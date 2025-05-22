@@ -3,11 +3,11 @@ from discord.ext import commands
 
 intents = discord.Intents.default()
 intents.message_content = True
-intents.members = True 
+intents.members = True
 bot = commands.Bot(command_prefix="/", intents=intents)
 
 
-TOKEN = "Token de tu bot" 
+TOKEN = ""
 
 @bot.event
 async def on_ready():
@@ -20,10 +20,10 @@ async def hola(ctx):
 async def on_member_join(member):
       for channel in member.guild.text_channels:
             if channel.permissions_for(member.guild.me).send_message:
-             await   channel.send(f"!Bienvenido {member.mention}🎉")   
-             
+             await   channel.send(f"!Bienvenido {member.mention}🎉")
+
              break
-            
+
 @bot.group()
 async def cool(ctx):
     """Says if a user is cool.
@@ -37,5 +37,11 @@ async def cool(ctx):
 async def _bot(ctx):
     """Is the bot cool?"""
     await ctx.send('Yes, the bot is cool.')
+
+@bot.command()
+async def repeat(ctx, times: int, content='repeating...'):
+    """Repeats a message multiple times."""
+    for i in range(times):
+        await ctx.send(content)
 
 bot.run(TOKEN)
