@@ -7,7 +7,7 @@ intents.members = True
 bot = commands.Bot(command_prefix="/", intents=intents)
 
 
-TOKEN = ""
+TOKEN = "Tu Token aqui"
 
 @bot.event
 async def on_ready():
